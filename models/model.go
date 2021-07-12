@@ -1,10 +1,11 @@
 package models
 
 import (
-	"github.com/astaxie/beego/orm"
-	"github.com/astaxie/beego"
-	_ "github.com/go-sql-driver/mysql"//导入驱动包
 	"CmsProject/util"
+
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
+	_ "github.com/go-sql-driver/mysql" //导入驱动包
 )
 
 /**
@@ -27,7 +28,7 @@ func init() {
 	//port := beego.AppConfig.String("3306")
 	//dbname := beego.AppConfig.String("testdb")
 
-	dbConn := "root:@tcp(127.0.0.1:3306)/testdb?charset=utf8"
+	dbConn := "root:mysql123@tcp(127.0.0.1:3306)/elmcms?charset=utf8"
 	//dbConn := user + ":" + pwd + "@tcp(" + host + ":" + port + ")/" + dbname + "?charset=utf8"
 	//dbConn := user + ":"  + "@tcp(" + host + ":" + port + ")/" + dbname + "?charset=utf8"
 
@@ -61,7 +62,7 @@ func init() {
 
 //管理员权限等级及级别名称
 type Permission struct {
-	Id    int                                    //权限登记id
+	Id    int      //权限登记id
 	Level string   `json:"level" orm:"size(30)"` //权限级别
 	Name  string   `json:"name"  orm:"size(20)"` //权限名称
 	Admin []*Admin `orm:"rel(m2m)"`              //orm映射 一个权限可以被多个管理员所拥有
@@ -186,7 +187,7 @@ type Shop struct {
  */
 type OrderStatus struct {
 	Id         int
-	StatusId   int                                //订单状态编号
+	StatusId   int          //订单状态编号
 	StatusDesc string       `orm:"size(100)"`     //订单状态描述
 	UserOrder  []*UserOrder `orm:"reverse(many)"` //一个订单状态可以对应多个订单
 }
@@ -195,11 +196,11 @@ type OrderStatus struct {
  * 商家所支持的服务表
  */
 type SupportService struct {
-	Id          int                      // 编号
-	Name        string                   //名称
-	IconName    string                   //前端设置的图标内容（动态设置，本项目不涉及）
-	IconColor   string                   //前端设置的图标颜色（方便动态设置，本项目不涉及）
-	Description string                   //服务描述
+	Id          int     // 编号
+	Name        string  //名称
+	IconName    string  //前端设置的图标内容（动态设置，本项目不涉及）
+	IconColor   string  //前端设置的图标颜色（方便动态设置，本项目不涉及）
+	Description string  //服务描述
 	Shop        []*Shop `orm:"rel(m2m)"` //orm映射 一个活动服务可以被多个商家参加
 }
 
