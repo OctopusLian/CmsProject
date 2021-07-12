@@ -1,3 +1,4 @@
 .idea
 CmsProject
 *.exe
+.vscode
